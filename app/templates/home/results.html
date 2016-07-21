@@ -1,0 +1,13 @@
+<h1>{{org_name}}</h1>
+
+{% if context_dict %}
+    <h3>{{ context_dict['message'] }}</h3>
+{% endif %}
+
+<ul>
+    {% for row in sorted_list %}
+        <li>
+            {{row['name']}}
+        </li>
+    {% endfor %}    
+</ul>
