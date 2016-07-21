@@ -1,13 +1,47 @@
-<h1>{{org_name}}</h1>
+{% extends 'base.html' %}
 
-{% if context_dict %}
-    <h3>{{ context_dict['message'] }}</h3>
-{% endif %}
+{% block title %}GitSearch{% endblock %}
 
-<ul>
-    {% for row in sorted_list %}
-        <li>
-            {{row['name']}}
-        </li>
-    {% endfor %}    
-</ul>
+{% block cssfile %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/results.css') }}"/>
+{% endblock %}
+
+
+{% block body %}
+<!-- Page Content -->
+   <div class="container">
+       <div class="row">
+           <div class="col-md-3">
+               {% if context_dict %}
+                   <h3>{{ context_dict['message'] }}</h3>
+               {% else %}
+               <div class="container">
+
+                   <hgroup class="mb20">
+                    <h1>Search Results</h1>
+                    <h2 class="lead">results were found for the search for <strong class="text-danger">{{org_name}}</strong></h2>
+                </hgroup>
+           {% for row in sorted_list %}
+
+                   <section class="col-xs-12 col-sm-6 col-md-12">
+                    <article class="search-result row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+                            <h3><a href="#" title="">{{row['name']}}</a></h3>
+                            <p>Created Date:- </p>
+                               <br />
+                               <br />
+                        </div>
+                        <span class="clearfix borda"></span>
+                    </article>
+                </section>
+           {% endfor %}
+
+            {% endif %}
+
+
+            </div>
+
+
+
+{% endblock %}

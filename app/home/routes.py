@@ -7,8 +7,6 @@ import requests
 def index():
     if request.method == 'POST':
         org_name = request.form['search']
-        #main code starts here!
-        #org_name = str(raw_input("Enter the name of the organisation: ")).lower()
         api_url = "https://api.github.com/orgs/"+ org_name + "/repos"
         r= requests.get(api_url)
         json_obj = r.json()

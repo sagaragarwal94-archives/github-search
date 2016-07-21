@@ -2,9 +2,17 @@
 
 {% block title %}GitSearch{% endblock %}
 
+{% block cssfile %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}"/>
+{% endblock %}
+
+{% block jsfile %}
+<script src="{{ url_for('static',filename='js/main.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 <div class="container">
-    <div class="row">
+    <div class="row" id='eg2'>
         <div class="col-md-6 col-md-offset-3" id="eg1">
             <div class="panel panel-login">
                 <div class="panel-heading">

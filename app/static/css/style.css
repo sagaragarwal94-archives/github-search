@@ -9,11 +9,14 @@
 #eg1 {
     padding-top: 80px;
 }
+#eg2 {
+    margin-bottom: 210px;
+}
 #footerwrap {
 		background: #f2f2f2;
-        margin-top: 235px;
-		padding-top: 10px;
-		padding-bottom: 10px;
+		margin-top: 10px;
+		padding-top: 20px;
+		padding-bottom: 50px;
 		border-bottom: 1px solid #ddd;
 		text-align: center;
 	}
