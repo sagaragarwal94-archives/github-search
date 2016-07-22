@@ -20,6 +20,9 @@
                    <hgroup class="mb20">
                     <h1>Search Results</h1>
                     <h2 class="lead">results were found for the search for <strong class="text-danger">{{org_name}}</strong></h2>
+                    <a href="{{ url_for('home.sort_by_date',org_name=org_name) }}">Sort By Date</a>
+                    |||
+                    <a href="{{ url_for('home.sort_by_issues',org_name=org_name) }}">Sort By Issues</a>
                 </hgroup>
            {% for row in sorted_list %}
 
@@ -28,7 +31,8 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
                             <h3><a href="#" title="">{{row['name']}}</a></h3>
-                            <p>Created Date:- </p>
+                            <p>Created Date:- {{row['created_at']}} </p>
+                            <p>Issues:- {{row['open_issues']}} </p>
                                <br />
                                <br />
                         </div>
