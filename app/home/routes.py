@@ -1,15 +1,14 @@
-from flask import render_template, request
+from flask import render_template, request, g, session
 from . import home
 import requests
 from ..apicode import apiresult
+from pprint import pprint
 
 @home.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         org_name = request.form['search']
-        api_url = "https://api.github.com/orgs/"+ org_name + "/repos"
-        r= requests.get(api_url)
-        json_obj = r.json()
+        json_obj = apiresult(org_name)
         try:
             json_obj['message']
             context_dict = {"message":"No such organisation exists!"}
@@ -25,9 +24,37 @@ def sort_by_date(org_name):
     json_obj = apiresult(org_name)
     sorted_list = sorted(json_obj, key=lambda k: k['created_at'], reverse = True)
     return render_template('home/results.html',org_name=org_name,sorted_list=sorted_list)
+"""
+    #json_obj = apiresult(org_name)
+    json_dict = session.get('json_obj')
+    #json_var = g.get('json_obj',None)
+    pprint(json_dict)
+    try:
+        json_dict['message']
+        context_dict = {"message":"No such organisation exists!"}
+        return render_template('home/results.html',context_dict=context_dict)
+    except:
+        sorted_list = sorted(json_dict, key=lambda k: k['created_at'], reverse = True)
+        return render_template('home/results.html',org_name=org_name,sorted_list=sorted_list)
+        #return "Hi"
+"""
 
 @home.route('/SortByIssues/<org_name>')
 def sort_by_issues(org_name):
     json_obj = apiresult(org_name)
     sorted_list = sorted(json_obj, key=lambda k: k['open_issues'], reverse = True)
     return render_template('home/results.html',org_name=org_name,sorted_list=sorted_list)
+
+"""
+    json_dict = session.get('json_obj')
+    #json_var = g.get('json_obj',None)
+    pprint(json_dict)
+    try:
+        json_dict['message']
+        context_dict = {"message":"No such organisation exists!"}
+        return render_template('home/results.html',context_dict=context_dict)
+    except:
+        sorted_list = sorted(json_dict, key=lambda k: k['open_issues'], reverse = True)
+        return render_template('home/results.html',org_name=org_name,sorted_list=sorted_list)
+        #return "Hi"
+"""

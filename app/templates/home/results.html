@@ -8,44 +8,50 @@
 
 
 {% block body %}
-<!-- Page Content -->
-   <div class="container">
+<div class="container">
        <div class="row">
-           <div class="col-md-3">
-               {% if context_dict %}
-                   <h3>{{ context_dict['message'] }}</h3>
-               {% else %}
-               <div class="container">
-
-                   <hgroup class="mb20">
-                    <h1>Search Results</h1>
-                    <h2 class="lead">results were found for the search for <strong class="text-danger">{{org_name}}</strong></h2>
-                    <a href="{{ url_for('home.sort_by_date',org_name=org_name) }}">Sort By Date</a>
-                    |||
-                    <a href="{{ url_for('home.sort_by_issues',org_name=org_name) }}">Sort By Issues</a>
-                </hgroup>
-           {% for row in sorted_list %}
-
-                   <section class="col-xs-12 col-sm-6 col-md-12">
-                    <article class="search-result row">
-
-                        <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-                            <h3><a href="#" title="">{{row['name']}}</a></h3>
-                            <p>Created Date:- {{row['created_at']}} </p>
-                            <p>Issues:- {{row['open_issues']}} </p>
-                               <br />
-                               <br />
+          <div class="col-md-9">
+                <!-- Page Content -->
+                         <div class="col-md-3" >
+                            <div class="container">
+                                <hgroup class="mb20">
+                                    {% if context_dict %}
+                                        <h3>{{ context_dict['message'] }}</h3>
+                                    {% else %}
+                                        <h1>Search Results</h1>
+                                        <h2 class="lead">results were found for the search for <strong class="text-danger">{{org_name}}</strong></h2>
+                                </hgroup>
+                                        {% for row in sorted_list %}
+                                            <section class="col-md-9">
+                                            <article class="search-result row">
+                                            <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+                                                  <h3><a href="https://github.com/{{org_name}}/{{row['name']}}" title="">{{row['name']}}</a></h3>
+                                                  <p>Created Date:- {{row['created_at']}} </p>
+                                                  <p>Issues:- {{row['open_issues']}} </p>
+                                                  <br />
+                                                  <br />
+                                            </div>
+                                            <span class="clearfix borda"></span>
+                                            </article>
+                                            </section>
+                                        {% endfor %}
+                            </div>
                         </div>
-                        <span class="clearfix borda"></span>
-                    </article>
-                </section>
-           {% endfor %}
-
-            {% endif %}
-
-
             </div>
+            <div class="col-md-3" id="sortbar">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default">Sort By</button>
+                    <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
 
-
+                     <ul class="dropdown-menu">
+                        <li><a href="#" ><span class="{% block dropdownok1 %}{% endblock %}"></span> Name</a></li>
+                        <li><a href="{{ url_for('home.sort_by_date',org_name=org_name) }}" ><span class="{% block dropdownok2 %}{% endblock %}"></span> Created Date</a></li>
+                        <li><a href="{{ url_for('home.sort_by_issues',org_name=org_name) }}" ><span class="{% block dropdownok3 %}{% endblock %}"></span> Issues</a></li>
+                     </ul>
+                </div>
+            </div>
+    {% endif %}
+  </div>
+</div>
 
 {% endblock %}

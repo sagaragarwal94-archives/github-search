@@ -1,3 +1,7 @@
+html, body {
+  height: 100%;
+}
+
 .navbar {
     border-radius: 0;
 }
@@ -5,12 +9,26 @@
 .navbar-brand {
     font-family: 'Satisfy', cursive;
 }
-
-
+#sortbar {
+    margin-top: 45px;
+    padding-left: 70px;
+}
+#footerwrap {
+		background: #f2f2f2;
+        margin-top: 10px;
+		padding-top: 20px;
+		padding-bottom: 50px;
+		border-bottom: 1px solid #ddd;
+		text-align: center;
+        position: relative;
+	}
+#footerwrap h4 {
+		color: blue;
+	}
 
 @import "http://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
 
-.container { margin-top: 20px; }
+.container { margin-top: 20px;}
 .mb20 { margin-bottom: 20px; }
 
 hgroup { padding-left: 15px; border-bottom: 1px solid #ccc; }
