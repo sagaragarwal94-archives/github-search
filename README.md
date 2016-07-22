@@ -7,8 +7,7 @@ $python manage.py runserver
 Link:- http://127.0.0.1:5000/home/
 
 
-Problems:-
-    1. Second Click on "Sort By Name" Not working.
-    2. Tried to access json_obj by session but failed.
-    
-If 2nd problem gets solve then 1st problem will also get solve.    
+Problem:-
+    1. Tried to access json_obj by session/g object but failed.
+
+ 

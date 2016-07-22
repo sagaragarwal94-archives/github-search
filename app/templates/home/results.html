@@ -44,7 +44,7 @@
                     <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
 
                      <ul class="dropdown-menu">
-                        <li><a href="#" ><span class="{% block dropdownok1 %}{% endblock %}"></span> Name</a></li>
+                        <li><a href="{{ url_for('home.sort_by_name',org_name=org_name) }}" ><span class="{% block dropdownok1 %}{% endblock %}"></span> Name</a></li>
                         <li><a href="{{ url_for('home.sort_by_date',org_name=org_name) }}" ><span class="{% block dropdownok2 %}{% endblock %}"></span> Created Date</a></li>
                         <li><a href="{{ url_for('home.sort_by_issues',org_name=org_name) }}" ><span class="{% block dropdownok3 %}{% endblock %}"></span> Issues</a></li>
                      </ul>
