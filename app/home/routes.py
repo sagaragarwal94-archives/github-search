@@ -2,7 +2,7 @@ from flask import render_template, request, g, session
 from . import home
 import requests
 from ..apicode import apiresult
-from pprint import pprint
+#from pprint import pprint
 
 @home.route('/', methods=['GET', 'POST'])
 def index():
@@ -15,7 +15,7 @@ def index():
             return render_template('home/results.html',context_dict=context_dict)
         except:
             sorted_list = sorted(json_obj, key=lambda k: k['name'], reverse = False)
-            return render_template('home/results.html',org_name=org_name,sorted_list=sorted_list)
+            return render_template('home/sortbyname.html',org_name=org_name,sorted_list=sorted_list)
     return render_template('home/index.html')
 
 
@@ -23,7 +23,7 @@ def index():
 def sort_by_date(org_name):
     json_obj = apiresult(org_name)
     sorted_list = sorted(json_obj, key=lambda k: k['created_at'], reverse = True)
-    return render_template('home/results.html',org_name=org_name,sorted_list=sorted_list)
+    return render_template('home/sortbydate.html',org_name=org_name,sorted_list=sorted_list)
 """
     #json_obj = apiresult(org_name)
     json_dict = session.get('json_obj')
@@ -43,7 +43,7 @@ def sort_by_date(org_name):
 def sort_by_issues(org_name):
     json_obj = apiresult(org_name)
     sorted_list = sorted(json_obj, key=lambda k: k['open_issues'], reverse = True)
-    return render_template('home/results.html',org_name=org_name,sorted_list=sorted_list)
+    return render_template('home/sortbyissues.html',org_name=org_name,sorted_list=sorted_list)
 
 """
     json_dict = session.get('json_obj')
