@@ -21,7 +21,7 @@
                             <a href="#" class="active" id="login-form-link">Organisation</a>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#" id="register-form-link">Individual</a>
+                            <a href="{{ url_for('indv.index') }}" id="register-form-link">Individual</a>
                         </div>
                     </div>
                     <hr>
@@ -32,12 +32,12 @@
                             {% if error %}
                                 {{ error }}
                             {% endif %}
-                            <form id="login-form" action="{{url_for('home.index')}}" method="post" role="form" style="display: block;">
+                            <form id="login-form" action="{{url_for('orgs.index')}}" method="post" role="form" style="display: block;">
                                 <div class="form-group">
                                     <input type="text" name="orgsearch" id="username" tabindex="1" class="form-control" placeholder="Search" >
 
                                 </div>
-                            
+
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
@@ -47,7 +47,7 @@
                                 </div>
 
                             </form>
-                            <form id="register-form" action="{{url_for('home.index')}}" method="post" role="form" style="display: none;">
+                            <form id="register-form" action="{{url_for('orgs.index')}}" method="post" role="form" style="display: none;">
                                 <div class="form-group">
                                     <input type="text" name="indvsearch" id="username" tabindex="1" class="form-control" placeholder="Search" >
                                 </div>

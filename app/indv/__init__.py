@@ -1,6 +1,6 @@
 from flask import Blueprint
 
 
-home = Blueprint('home', __name__)
+indv = Blueprint('indv', __name__)
 
 from . import routes
