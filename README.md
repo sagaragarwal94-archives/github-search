@@ -28,7 +28,7 @@ Write Contributing.md
 Error Page build
 More Sorting to ADD
 ```
-The project is live. Click [here](www.github-search-app.herokuapp.com)  
+The project is live. Click [here](http://www.github-search-app.herokuapp.com)  
 
 To Contribute or Build it, Read [Contributing.MD](CONTRIBUTING.MD)
 
