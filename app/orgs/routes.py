@@ -2,6 +2,7 @@ from flask import render_template, request, g, session, redirect, url_for
 from . import orgs
 import requests
 from ..apicode import apiresult
+from pprint import pprint
 
 @orgs.route('/', methods=['GET', 'POST'])
 def index():
@@ -22,19 +23,55 @@ def sort_by_name(org_name):
         context_dict = {"message":"No such organisation exists!"}
         return render_template('orgs/results.html',context_dict=context_dict)
     except:
-        sorted_list = sorted(json_obj, key=lambda k: k['name'], reverse = False)
-        return render_template('orgs/sortbyname.html',org_name=org_name,sorted_list=sorted_list)
+        l = []
+        sorted_list = sorted(json_obj, key=lambda k: k['name'].title(), reverse = False)
+        for row in sorted_list:
+            l.append(str(row['language']))
+        newlist = list(set(l))
+        print newlist
+        if 'None' in newlist:
+            newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
+        print newlist1
+        newsortedlist = sorted(newlist1)
+        return render_template('orgs/sortbyname.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
 
 
 
 @orgs.route('/SortByDate/<org_name>')
 def sort_by_date(org_name):
     json_obj = apiresult(org_name)
+    l = []
     sorted_list = sorted(json_obj, key=lambda k: k['created_at'], reverse = True)
-    return render_template('orgs/sortbydate.html',org_name=org_name,sorted_list=sorted_list)
+    for row in sorted_list:
+        l.append(str(row['language']))
+    newlist = list(set(l))
+    if 'None' in newlist:
+        newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
+    newsortedlist = sorted(newlist1)
+    return render_template('orgs/sortbydate.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
 
 @orgs.route('/SortByIssues/<org_name>')
 def sort_by_issues(org_name):
     json_obj = apiresult(org_name)
+    l = []
     sorted_list = sorted(json_obj, key=lambda k: k['open_issues'], reverse = True)
-    return render_template('orgs/sortbyissues.html',org_name=org_name,sorted_list=sorted_list)
+    for row in sorted_list:
+        l.append(str(row['language']))
+    newlist = list(set(l))
+    if 'None' in newlist:
+        newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
+    newsortedlist = sorted(newlist1)
+    return render_template('orgs/sortbyissues.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
+
+@orgs.route('/SortByLanguage/<org_name>/<item>')
+def sort_by_language(org_name,item):
+    json_obj = apiresult(org_name)
+    l =[]
+    sorted_list = sorted(json_obj, key=lambda k: k['name'].title(), reverse = False)
+    for row in sorted_list:
+        l.append(str(row['language']))
+    newlist = list(set(l))
+    if 'None' in newlist:
+        newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
+    newsortedlist = sorted(newlist1)
+    return render_template('orgs/sortbylanguage.html',org_name=org_name,sorted_list=sorted_list,item=item,newsortedlist=newsortedlist)

@@ -1,0 +1,39 @@
+{% extends 'orgs/results.html' %}
+
+{% block language %}
+    {% for row in sorted_list %}
+        {% if row['language'] == item %}
+                <section class="col-md-9">
+                <article class="search-result row">
+                <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+                      <h3><a href="https://github.com/{{org_name}}/{{row['name']}}" title="">{{row['name']}}</a></h3>
+                      <p>Created Date:- {{row['created_at']}} </p>
+                      <p>Issues:- {{row['open_issues']}} </p>
+                      <br />
+                      
+                      <br />
+                </div>
+                <span class="clearfix borda"></span>
+                </article>
+                </section>
+        {% endif %}
+        {% if row['language'] not in newsortedlist and item=='Not Assigned'%}
+        <section class="col-md-9">
+        <article class="search-result row">
+        <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+              <h3><a href="https://github.com/{{org_name}}/{{row['name']}}" title="">{{row['name']}}</a></h3>
+              <p>Created Date:- {{row['created_at']}} </p>
+              <p>Issues:- {{row['open_issues']}} </p>
+              <br />
+
+              <br />
+        </div>
+        <span class="clearfix borda"></span>
+        </article>
+        </section>
+        {% endif %}
+
+    {% endfor %}
+
+
+{% endblock %}
