@@ -1,7 +1,8 @@
 venv/
 *.pyc
 *.*~
-
+.venv/
+node_modules/
 
 # OS generated files #
 ######################

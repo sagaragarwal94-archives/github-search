@@ -1,5 +1,6 @@
 # github-search
 
+[![Build Status](https://travis-ci.org/sagaragarwal94/github-search.svg?branch=master)](https://travis-ci.org/sagaragarwal94/github-search)
 
 ## What this is about?
 
@@ -28,7 +29,7 @@ Write Contributing.md
 Error Page build
 More Sorting to ADD
 ```
-The project is live. Click [here](https://github-search-app.herokuapp.com/home/)  
+The project is live. Click [here](https://github-search-app.herokuapp.com/)  
 
 To Contribute or Build it, Read [Contributing.MD](CONTRIBUTING.MD)
 
