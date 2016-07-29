@@ -7,3 +7,9 @@ def apiresult(org_name):
     r= requests.get(api_url)
     json_obj = r.json()
     return json_obj
+
+def userapiresult(user_name):
+    api_url = "https://api.github.com/users/"+ user_name + "/repos"
+    r= requests.get(api_url)
+    json_obj = r.json()
+    return json_obj

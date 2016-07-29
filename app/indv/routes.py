@@ -1,10 +1,57 @@
 from flask import render_template, request, g, session, redirect, url_for
 from . import indv
 import requests
-from ..apicode import apiresult
+from ..apicode import apiresult, userapiresult
 
 @indv.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        pass
+        try:
+            request.form['orgsearch']
+            org_name = request.form['orgsearch'].strip().title()
+            if not org_name:
+                error = "What do you want to search?"
+                return render_template('orgs/index.html', error=error)
+            return redirect(url_for('orgs.sort_by_name',org_name=org_name))
+        except:
+            user_name = request.form['indvsearch'].strip()
+            if not user_name:
+                error = "What do you want to search?"
+                return render_template('indv/index.html', error=error)
+            return redirect(url_for('indv.sort_by_name',user_name=user_name))
     return render_template('orgs/index.html')
+
+
+@indv.route('/SortByName/<user_name>')
+def sort_by_name(user_name):
+    json_obj = userapiresult(user_name)
+    if len(json_obj) !=0:
+        try:
+            json_obj['message']
+            context_dict = {"message":"No such user exists!"}
+            return render_template('indv/results.html',context_dict=context_dict)
+        except:
+            sorted_list = sorted(json_obj, key=lambda k: k['name'].title(), reverse = False)
+            return render_template('indv/sortbyname.html',user_name=user_name,sorted_list=sorted_list)
+    else:
+        context_dict = {"message":"No such user exists!"}
+        return render_template('indv/results.html',context_dict=context_dict)
+
+
+@indv.route('/SortByDate/<user_name>')
+def sort_by_date(user_name):
+    json_obj = userapiresult(user_name)
+    sorted_list = sorted(json_obj, key=lambda k: k['created_at'], reverse = True)
+    return render_template('indv/sortbydate.html',user_name=user_name,sorted_list=sorted_list)
+
+@indv.route('/SortByIssues/<user_name>')
+def sort_by_issues(user_name):
+    json_obj = userapiresult(user_name)
+    sorted_list = sorted(json_obj, key=lambda k: k['open_issues_count'], reverse = True)
+    return render_template('indv/sortbyissues.html',user_name=user_name,sorted_list=sorted_list)
+
+@indv.route('/SortByStars/<user_name>')
+def sort_by_stars(user_name):
+    json_obj = userapiresult(user_name)
+    sorted_list = sorted(json_obj, key=lambda k: k['stargazers_count'], reverse = True)
+    return render_template('indv/sortbystars.html',user_name=user_name,sorted_list=sorted_list)

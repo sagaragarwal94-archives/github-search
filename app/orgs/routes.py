@@ -2,16 +2,24 @@ from flask import render_template, request, g, session, redirect, url_for
 from . import orgs
 import requests
 from ..apicode import apiresult
-from pprint import pprint
+
 
 @orgs.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        org_name = request.form['orgsearch'].strip().title()
-        if not org_name:
-            error = "What do you want to search?"
-            return render_template('orgs/index.html', error=error)
-        return redirect(url_for('orgs.sort_by_name',org_name=org_name))
+        try:
+            request.form['orgsearch']
+            org_name = request.form['orgsearch'].strip().title()
+            if not org_name:
+                error = "What do you want to search?"
+                return render_template('orgs/index.html', error=error)
+            return redirect(url_for('orgs.sort_by_name',org_name=org_name))
+        except:
+            user_name = request.form['indvsearch'].strip()
+            if not user_name:
+                error = "What do you want to search?"
+                return render_template('indv/index.html', error=error)
+            return redirect(url_for('indv.sort_by_name',user_name=user_name))
     return render_template('orgs/index.html')
 
 
@@ -28,10 +36,8 @@ def sort_by_name(org_name):
         for row in sorted_list:
             l.append(str(row['language']))
         newlist = list(set(l))
-        #print newlist
         if 'None' in newlist:
             newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
-        #print newlist1
         newsortedlist = sorted(newlist1)
         return render_template('orgs/sortbyname.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
 

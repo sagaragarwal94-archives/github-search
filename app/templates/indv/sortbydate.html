@@ -1,0 +1,21 @@
+{% extends 'indv/results.html' %}
+
+{% block basic %}
+{% for row in sorted_list %}
+    <section class="col-md-9">
+    <article class="search-result row">
+    <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+          <h3><a href="https://github.com/{{user_name}}/{{row['name']}}" title="">{{row['name']}}</a></h3>
+          <p>Created Date:- {{row['created_at']}} </p>
+          <p>Issues:- {{row['open_issues_count']}} </p>
+          <p>Stars:- {{row['stargazers_count']}} </p>
+          <br />
+          <br />
+    </div>
+    <span class="clearfix borda"></span>
+    </article>
+    </section>
+{% endfor %}
+{% endblock %}
+
+{% block dropdownok2 %}glyphicon glyphicon-ok pull-right{% endblock %}
