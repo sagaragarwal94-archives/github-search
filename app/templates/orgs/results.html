@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}GitSearch{% endblock %}
 
 {% block cssfile %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/results.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style_boot.css') }}"/>
+
 {% endblock %}
 
 
-{% block body %}
+{% block content %}
 <div class="container">
        <div class="row">
           <div class="col-md-9">

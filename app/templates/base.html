@@ -1,33 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-    <!--
-    <link rel="shortcut icon" type="image/png" href=""/>
-    -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
-    {% block cssfile %}{% endblock %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    {% block jsfile %}{% endblock %}
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-</head>
-<body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <!-- Header -->
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url_for('home.index') }}">GitSearch</a>
-            </div>
+    <title>github-search</title>
+
+    <!-- Bootstrap core CSS -->
+        <link href="{{url_for('static',filename='css/materialize.min.css')}}" rel="stylesheet">
+        <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
+        {% block cssfile %}
+        {% endblock %}
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--    <link href="{{url_for('static',filename='css/ie10-viewport-bug-workaround.css')}}" rel="stylesheet">-->
+
+        <!-- Custom styles for this template -->
+      <!--  <link href="{{url_for('static',filename='css/jumbotron.css')}}" rel="stylesheet">-->
+  </head>
+
+  <body>
+
+
+      <nav>
+        <div class="nav-wrapper">
+          <a href="{{url_for('orgs.index')}}" class="brand-logo center">Github-Search</a>
         </div>
-        {% block navbar %}{% endblock %}
-    </nav>
+      </nav>
 
-    {% block body %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
+
+    <footer class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">About Project</h5>
+              <p class="grey-text text-lighten-4">Making Github Searching Better</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Browse the ones who made this...</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="https://github.com/sagaragarwal94">Sagar Chand Agarwal</a></li>
+                <li><a class="grey-text text-lighten-3" href="https://github.com/hiteshgarg16">Hitesh Garg</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2016 Licensed under MIT
+          </div>
+        </div>
+      </footer>
+
+    </div> <!-- /container -->
 
 
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+          <script>window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"><\/script>')</script>
+      <script src="{{url_for('static',filename='js/materialize.min.js')}}"></script>
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  </body>
 </html>
