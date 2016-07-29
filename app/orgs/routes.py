@@ -28,10 +28,10 @@ def sort_by_name(org_name):
         for row in sorted_list:
             l.append(str(row['language']))
         newlist = list(set(l))
-        print newlist
+        #print newlist
         if 'None' in newlist:
             newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
-        print newlist1
+        #print newlist1
         newsortedlist = sorted(newlist1)
         return render_template('orgs/sortbyname.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
 
