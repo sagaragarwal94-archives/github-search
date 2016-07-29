@@ -1,0 +1,15 @@
+nguage: python
+python:
+- 2.7
+install:
+- pip install -r requirements.txt
+- pip install coveralls
+script:
+- nosetests
+after_success:
+- coveralls
+deploy:
+  provider: heroku
+  api_key:
+    secure: iU6SicqPdZugegbQ35KXlSCpD+JwlPOqkK/FyqrDNOuQEQFxOtXdKikNWpyfbDqzhy7YTvVDx51MNgNFS1JNb4oXrnNwnoiOvrEYBs2uslzBHHBkeNEzCR+sau5UDw7mngW6o6WjVtJfZT5J12PghW0rggeL+JJhYy1d88oLxOPgvK/H6pdrfyXooaHfp+SWSVc3z3e8MzqKaxmC9cbrPZERLiKXMTAiPN+nRE6bb0hkk3KsklXwxDF5AK1Vb/qyme7DzB2aaPjq3cbJxzc1pz/A5ykVhHTbyBnFD3pmZQ/TRwPKHlQg7PzwGV4MZf/3chB9d8sn2jCpkBfRB0WTB94V156HLkgIRJtDlDu1C7beVp8KDOCgWOlWXAdoaWUrM0e4l62vNwGKySR8cwEcQwp6VKUDmGoh7pKbQvugeN0bpEH/Jzn7mFfaJFsziYe05g4cISGOgilsc1mGbxDg/HCJRdPTk8duwv9iLyYqqUxdN9mLhhD53HJITPZeK/zomG7d/ICDGf6JHjfOldn7fTUFVTdi1g2djduLuPHMET6m+hgjJiwZlxmpU9tKbYWnmiqPspNi4dZyTXhe7Wul3je0cWlhUepCREvcZM8CDF/ZV+RzEk2a8aiY2XcMO6FdwmmmhOuRO+On7zwYDEw9cR6tW4PxzX4j5XywwDqs/zE=
+  app: github-search-app
