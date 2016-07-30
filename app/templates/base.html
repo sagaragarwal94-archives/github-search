@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Making Github Search Better and Faster{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
     <!--
     <link rel="shortcut icon" type="image/png" href=""/>
     -->
@@ -19,7 +19,7 @@
         <div class="container-fluid">
             <!-- Header -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url_for('orgs.index') }}">GitSearch</a>
+                <a class="navbar-brand" href="{{ url_for('orgs.index') }}">GitSearch, Making Github Search easier!!!</a>
             </div>
         </div>
         {% block navbar %}{% endblock %}
