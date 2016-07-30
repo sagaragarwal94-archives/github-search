@@ -20,6 +20,8 @@ Github Api's
 Requests Library
 Heroku
 Travis CI
+Bootstrap
+JQuery
 ```
 
 ## Pending Tasks
