@@ -1,15 +1,11 @@
 ## Some points to know
-We use Flask as the Framework, along with applications related to Flask. The deployment is done via Travis CI to heroku.  
-Github Search is a testing and initial Project to enable better searching of the Github Repos, as it becomes nasty for the  
-newbies to use Github or look for the Projects.
+We use Flask as the Framework, along with applications related to Flask. The deployment is done via Travis CI to heroku.  Github Search is a testing and initial Project to enable better searching of the Github Repos, as it becomes nasty for the newbies to use Github or look for the Projects.
 
 ## Who can contribute
 
-Anyone who loves to code. One with Flask along with Python is a must for getting to understand the code. The structure is   
-inspired by  (repo)[https://github.com/miguelgrinberg/flask-pycon2014].
+Anyone who loves to code. One with Flask along with Python is a must for getting to understand the code. The structure is inspired by [repo](https://github.com/miguelgrinberg/flask-pycon2014).
 
 ## How to Tackle issues or submit PR for Changes proposed or suggested by you
-
 ```
 1.Fork the repo 
 2.git clone https://github.com/<your-username>/github-search
@@ -25,7 +21,6 @@ inspired by  (repo)[https://github.com/miguelgrinberg/flask-pycon2014].
 	Commit guidelines will be pasted too
 8.git push origin branch-name
 9.Create a PR to[ Main](https://github.com/sagaragarwal94/github-search) branch
-
 ```
 
 Have Fun Hacking....!!!!!!
