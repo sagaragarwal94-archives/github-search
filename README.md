@@ -8,7 +8,7 @@
 Improved Github Searching
 Two Separate Sections: Organizations and Individual
 Organization Search enabled by name and projects can be sorted in various tags
-Individual Search (Work in Progress)
+Individual Search 
 
 ```
 
@@ -28,7 +28,7 @@ JQuery
 
 ```
 We coordinate on issues, if there is the part you need to comment or the bugs or features,
-do point by filing new issues.
+do point by filing new issues [here]( https://github.com/sagaragarwal94/github-search/issues)
 
 ```
 The project is live. Click [here](https://github-search-app.herokuapp.com/)  
