@@ -26,12 +26,10 @@ JQuery
 
 ## Pending Tasks
 
-```
 We coordinate on issues, if there is the part you need to comment or the bugs or features,
-do point by filing new issues [here]( https://github.com/sagaragarwal94/github-search/issues)
+do point by filing new issues [here](https://github.com/sagaragarwal94/github-search/issues).
 
-```
-The project is live. Click [here](https://github-search-app.herokuapp.com/)  
+### The project is live. Click [here](https://github-search-app.herokuapp.com/)  
 
 To Contribute or Build it, Read [Contributing.MD](CONTRIBUTING.MD)
 
