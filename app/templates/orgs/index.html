@@ -18,10 +18,10 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-6">
-                            <a href="#" class="active" id="login-form-link">Organisation</a>
+                            <a href="{{ url_for('orgs.index') }}" class="active" id="login-form-link">Organisation</a>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#" id="register-form-link">Individual</a>
+                            <a href="{{ url_for('indv.index') }}" id="register-form-link">Individual</a>
                         </div>
                     </div>
                     <hr>
@@ -47,7 +47,7 @@
                                 </div>
 
                             </form>
-                            <form id="register-form" action="{{url_for('orgs.index')}}" method="post" role="form" style="display: none;">
+                            <form id="register-form" action="{{url_for('indv.index')}}" method="post" role="form" style="display: none;">
                                 <div class="form-group">
                                     <input type="text" name="indvsearch" id="username" tabindex="1" class="form-control" placeholder="Search" >
                                 </div>

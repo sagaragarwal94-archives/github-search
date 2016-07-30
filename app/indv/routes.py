@@ -6,21 +6,13 @@ from ..apicode import apiresult, userapiresult
 @indv.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        try:
-            request.form['orgsearch']
-            org_name = request.form['orgsearch'].strip().title()
-            if not org_name:
-                error = "What do you want to search?"
-                return render_template('orgs/index.html', error=error)
-            return redirect(url_for('orgs.sort_by_name',org_name=org_name))
-        except:
-            user_name = request.form['indvsearch'].strip()
-            if not user_name:
-                error = "What do you want to search?"
-                return render_template('indv/index.html', error=error)
-            return redirect(url_for('indv.sort_by_name',user_name=user_name))
-    return render_template('orgs/index.html')
-
+        user_name = request.form['indvsearch'].strip()
+        print user_name
+        if not user_name:
+            error = "What do you want to search?"
+            return render_template('indv/index.html', error=error)
+        return redirect(url_for('indv.sort_by_name',user_name=user_name))
+    return render_template('indv/index.html')
 
 @indv.route('/SortByName/<user_name>')
 def sort_by_name(user_name):
