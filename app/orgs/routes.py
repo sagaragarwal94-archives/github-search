@@ -29,6 +29,7 @@ def sort_by_name(org_name):
             for row in sorted_list:
                 l.append(str(row['language']))
             newlist = list(set(l))
+            newlist1 = []
             if 'None' in newlist:
                 newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
             newsortedlist = sorted(newlist1)
