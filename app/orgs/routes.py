@@ -18,21 +18,24 @@ def index():
 @orgs.route('/SortByName/<org_name>')
 def sort_by_name(org_name):
     json_obj = apiresult(org_name)
-    try:
-        json_obj['message']
+    if len(json_obj) !=0:
+        try:
+            json_obj['message']
+            context_dict = {"message":"No such organisation exists!"}
+            return render_template('orgs/results.html',context_dict=context_dict)
+        except:
+            l = []
+            sorted_list = sorted(json_obj, key=lambda k: k['name'].title(), reverse = False)
+            for row in sorted_list:
+                l.append(str(row['language']))
+            newlist = list(set(l))
+            if 'None' in newlist:
+                newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
+            newsortedlist = sorted(newlist1)
+            return render_template('orgs/sortbyname.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
+    else:
         context_dict = {"message":"No such organisation exists!"}
         return render_template('orgs/results.html',context_dict=context_dict)
-    except:
-        l = []
-        sorted_list = sorted(json_obj, key=lambda k: k['name'].title(), reverse = False)
-        for row in sorted_list:
-            l.append(str(row['language']))
-        newlist = list(set(l))
-        if 'None' in newlist:
-            newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
-        newsortedlist = sorted(newlist1)
-        return render_template('orgs/sortbyname.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
-
 
 
 @orgs.route('/SortByDate/<org_name>')
