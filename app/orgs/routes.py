@@ -47,8 +47,8 @@ def sort_by_date(org_name):
         l.append(str(row['language']))
     newlist = list(set(l))
     if 'None' in newlist:
-        newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
-    newsortedlist = sorted(newlist1)
+        newlist = ['Not Assigned' if x=='None' else x for x in newlist]
+    newsortedlist = sorted(newlist)
     return render_template('orgs/sortbydate.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
 
 @orgs.route('/SortByIssues/<org_name>')
@@ -60,8 +60,8 @@ def sort_by_issues(org_name):
         l.append(str(row['language']))
     newlist = list(set(l))
     if 'None' in newlist:
-        newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
-    newsortedlist = sorted(newlist1)
+        newlist = ['Not Assigned' if x=='None' else x for x in newlist]
+    newsortedlist = sorted(newlist)
     return render_template('orgs/sortbyissues.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
 
 @orgs.route('/SortByLanguage/<org_name>/<item>')
@@ -73,6 +73,6 @@ def sort_by_language(org_name,item):
         l.append(str(row['language']))
     newlist = list(set(l))
     if 'None' in newlist:
-        newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
-    newsortedlist = sorted(newlist1)
+        newlist = ['Not Assigned' if x=='None' else x for x in newlist]
+    newsortedlist = sorted(newlist)
     return render_template('orgs/sortbylanguage.html',org_name=org_name,sorted_list=sorted_list,item=item,newsortedlist=newsortedlist)
