@@ -13,4 +13,5 @@ basic_api_codes/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
+*.rdb
 Thumbs.db

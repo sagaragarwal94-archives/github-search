@@ -20,26 +20,25 @@ def index():
 
 @orgs.route('/SortByName/<org_name>')
 def sort_by_name(org_name):
-    json_data = apiresult(org_name)
-    json_data = json.dumps(json_data)
-    redis_store.set('json_data',json_data)
-    json_obj = json.loads(redis_store.get('json_data'))
-    try:
-        json_obj['message']
+    json_obj = apiresult(org_name)
+    if len(json_obj) !=0:
+        try:
+            json_obj['message']
+            context_dict = {"message":"No such organisation exists!"}
+            return render_template('orgs/results.html',context_dict=context_dict)
+        except:
+            l = []
+            sorted_list = sorted(json_obj, key=lambda k: k['name'].title(), reverse = False)
+            for row in sorted_list:
+                l.append(str(row['language']))
+            newlist = list(set(l))
+            if 'None' in newlist:
+                newlist = ['Not Assigned' if x=='None' else x for x in newlist]
+            newsortedlist = sorted(newlist)
+            return render_template('orgs/sortbyname.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
+    else:
         context_dict = {"message":"No such organisation exists!"}
         return render_template('orgs/results.html',context_dict=context_dict)
-    except:
-        l = []
-        sorted_list = sorted(json_obj, key=lambda k: k['name'].title(), reverse = False)
-        for row in sorted_list:
-            l.append(str(row['language']))
-        newlist = list(set(l))
-        if 'None' in newlist:
-            newlist1 = ['Not Assigned' if x=='None' else x for x in newlist]
-        newsortedlist = sorted(newlist1)
-        pickled_object = pickle.dumps(newsortedlist)
-        redis_store.set('newsortedlist',pickled_object)
-        return render_template('orgs/sortbyname.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
 
 
 
@@ -47,19 +46,34 @@ def sort_by_name(org_name):
 def sort_by_date(org_name):
     json_obj = json.loads(redis_store.get('json_data'))
     sorted_list = sorted(json_obj, key=lambda k: k['created_at'], reverse = True)
-    newsortedlist = pickle.loads(redis_store.get('newsortedlist'))
+    for row in sorted_list:
+        l.append(str(row['language']))
+    newlist = list(set(l))
+    if 'None' in newlist:
+        newlist = ['Not Assigned' if x=='None' else x for x in newlist]
+    newsortedlist = sorted(newlist)
     return render_template('orgs/sortbydate.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
 
 @orgs.route('/SortByIssues/<org_name>')
 def sort_by_issues(org_name):
     json_obj = json.loads(redis_store.get('json_data'))
     sorted_list = sorted(json_obj, key=lambda k: k['open_issues'], reverse = True)
-    newsortedlist = pickle.loads(redis_store.get('newsortedlist'))
+    for row in sorted_list:
+        l.append(str(row['language']))
+    newlist = list(set(l))
+    if 'None' in newlist:
+        newlist = ['Not Assigned' if x=='None' else x for x in newlist]
+    newsortedlist = sorted(newlist)
     return render_template('orgs/sortbyissues.html',org_name=org_name,sorted_list=sorted_list,newsortedlist=newsortedlist)
 
 @orgs.route('/SortByLanguage/<org_name>/<item>')
 def sort_by_language(org_name,item):
     json_obj = json.loads(redis_store.get('json_data'))
     sorted_list = sorted(json_obj, key=lambda k: k['name'].title(), reverse = False)
-    newsortedlist = pickle.loads(redis_store.get('newsortedlist'))
+    for row in sorted_list:
+        l.append(str(row['language']))
+    newlist = list(set(l))
+    if 'None' in newlist:
+        newlist = ['Not Assigned' if x=='None' else x for x in newlist]
+    newsortedlist = sorted(newlist)
     return render_template('orgs/sortbylanguage.html',org_name=org_name,sorted_list=sorted_list,item=item,newsortedlist=newsortedlist)
