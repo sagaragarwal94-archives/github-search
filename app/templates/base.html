@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <!--
+    <link rel="shortcut icon" type="image/png" href=""/>
+    -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    {% block cssfile %}{% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {% block jsfile %}{% endblock %}
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Header -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ url_for('orgs.index') }}">GitSearch, Making Github Search easier!!!</a>
+            </div>
+        </div>
+        {% block navbar %}{% endblock %}
+    </nav>
+
+    {% block body %}
+{% endblock %}
+<footer class="footer">
+      <div class="container">
+        <p class="text-muted">Developed by <a href="http://sagaragarwal94.me">Sagar Chand Agarwal</a> and <a href="https://github.com/hiteshgarg14">Hitesh Garg</a>. Copyright @ 2016. Licensed under MIT.</p>
+      </div>
+    </footer>
+
+</body>
+</html>

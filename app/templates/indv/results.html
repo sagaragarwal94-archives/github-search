@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}GitSearch{% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/results.css') }}"/>
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+       <div class="row">
+          <div class="col-md-9">
+                <!-- Page Content -->
+                         <div class="col-md-3" >
+                            <div class="container">
+                                <hgroup class="mb20">
+                                    {% if context_dict %}
+                                        <h3>{{ context_dict['message'] }}</h3>
+                                    {% else %}
+                                        <h1>Search Results</h1>
+                                        <h2 class="lead">results were found for the search for <strong class="text-danger">{{user_name}}</strong></h2>
+                                </hgroup>
+                                {% block language %}{% endblock %}
+                                {% block basic %}{% endblock %}
+
+                            </div>
+                        </div>
+            </div>
+                                <div class="col-md-3" id="sortbar">
+                                <div class="btn-group">
+                                <button type="button" class="btn btn-default">Sort By</button>
+                                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
+
+                                <ul class="dropdown-menu">
+                                <li><a href="{{ url_for('indv.sort_by_name',user_name=user_name) }}" ><span class="{% block dropdownok1 %}{% endblock %}"></span> Name</a></li>
+                                <li><a href="{{ url_for('indv.sort_by_date',user_name=user_name) }}" ><span class="{% block dropdownok2 %}{% endblock %}"></span> Created Date</a></li>
+                                <li><a href="{{ url_for('indv.sort_by_issues',user_name=user_name) }}" ><span class="{% block dropdownok3 %}{% endblock %}"></span> Issues</a></li>
+                                <li><a href="{{ url_for('indv.sort_by_stars',user_name=user_name) }}" ><span class="{% block dropdownok4 %}{% endblock %}"></span> Stars</a></li>
+                                </ul>
+                                </div>
+                                </div>
+
+
+
+                                {% endif %}
+                            </div>
+                        </div>
+
+{% endblock %}

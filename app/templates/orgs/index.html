@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Github Organisation Search{% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}"/>
+{% endblock %}
+
+{% block jsfile %}
+<script src="{{ url_for('static',filename='js/main.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container" id="footer">
+    <div class="row" id='eg2'>
+        <div class="col-md-6 col-md-offset-3" id="eg1">
+            <div class="panel panel-login">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a href="{{ url_for('orgs.index') }}" class="active" id="login-form-link">Organisation</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="{{ url_for('indv.index') }}" id="register-form-link">Individual</a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            {% if error %}
+                                {{ error }}
+                            {% endif %}
+                            <form id="login-form" action="{{url_for('orgs.index')}}" method="post" role="form" style="display: block;">
+                                <div class="form-group">
+                                    <input type="text" name="orgsearch" id="username" tabindex="1" class="form-control" placeholder="Search" >
+
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Search" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <form id="register-form" action="{{url_for('indv.index')}}" method="post" role="form" style="display: none;">
+                                <div class="form-group">
+                                    <input type="text" name="indvsearch" id="username" tabindex="1" class="form-control" placeholder="Search" >
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Search" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
